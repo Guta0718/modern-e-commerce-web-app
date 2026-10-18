@@ -36,7 +36,7 @@ export const ProductsPage = ({ products, currentPage, onPageChange, hasNextPage 
         placeholder="Search products..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-8 w-full rounded-xl border border-gray-200 bg-white p-3 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:max-w-md"
+        className="mb-8 w-full rounded-xl border border-gray-200 bg-background p-3 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:max-w-md"
       />
       {hasNextPage && (
         <Button
@@ -49,7 +49,7 @@ export const ProductsPage = ({ products, currentPage, onPageChange, hasNextPage 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {filteredProduct.map((product) => (
           <div key={product.id} className="rounded border p-4">
-        <div className="relative bg-gray-50 h-56 w-full">
+        <div className="relative bg-background-50 h-56 w-full">
               {product.images?.[0] && (
                 <Image
                   src={product.images[0]}
@@ -60,10 +60,10 @@ export const ProductsPage = ({ products, currentPage, onPageChange, hasNextPage 
                 />
               )}
             </div>
-            <h2 className="mb-2 line-clamp-2 min-h-10 text-base font-semibold text-gray-800">
+            <h2 className="mb-2 line-clamp-2 min-h-10 text-base font-semibold text-foreground">
               {product.title}
             </h2>
-            <p className="mb-3 text-xl font-bold text-gray-900">
+            <p className="mb-3 text-xl font-bold">
               ETB {product.price}
             </p>
             <Button className="w-full rounded-lg">
@@ -75,7 +75,7 @@ export const ProductsPage = ({ products, currentPage, onPageChange, hasNextPage 
         ))}
 
        {filteredProduct.length === 0 && (
-        <p className="py-12 text-center text-gray-500">
+        <p className="py-12 text-center">
           No products found. Try another search.
         </p>
       )}
@@ -96,7 +96,7 @@ export const ProductsPage = ({ products, currentPage, onPageChange, hasNextPage 
         <Button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={!hasNextPage}
-          className="rounded bg-blue-600 px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded bg-blue-600 px-4 py-2 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Next
         </Button>

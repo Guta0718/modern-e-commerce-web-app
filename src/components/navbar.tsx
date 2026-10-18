@@ -1,11 +1,15 @@
-
-"use client"; 
+"use client";
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const router = useRouter();
 
   return (
     <nav className="bg-gray-900 p-4 text-white">
@@ -13,12 +17,11 @@ export const Navbar = () => {
         <Link
           href="/"
           className="text-xl font-bold tracking-wide hover:text-gray-300"
-          onClick={() => setMenuOpen(false)} 
+          onClick={() => setMenuOpen(false)}
         >
           Gebeya
         </Link>
 
-        { /*Mobile menu button */}
         <button
           type="button"
           className="rounded p-2 hover:bg-gray-800 md:hidden"
@@ -33,7 +36,6 @@ export const Navbar = () => {
           )}
         </button>
 
-        {/* responsive menu layout */}
         <div
           className={`${
             menuOpen ? "flex" : "hidden"
@@ -79,16 +81,61 @@ export const Navbar = () => {
             Checkout
           </Link>
 
-          <Link
-            href="/login"
-            className="font-semibold hover:text-gray-300"
-            onClick={() => setMenuOpen(false)}
-          >
-            Login
-          </Link>
+          {user ? (
+            <>
+              <Link
+                href="/account"
+                className="font-semibold hover:text-gray-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                My Account
+              </Link>
+
+              {user.role === "admin" && (
+                <Link
+                  href="/admin"
+                  className="font-semibold hover:text-gray-300"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Admin Dashboard
+                </Link>
+              )}
+
+              <button
+                type="button"
+                className="text-left font-semibold hover:text-gray-300"
+                onClick={() => {
+                  logout();
+                  setMenuOpen(false);
+                  router.replace("/login");
+                }}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="font-semibold hover:text-gray-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/register"
+                className="font-semibold hover:text-gray-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                Register
+              </Link>
+            </>
+          )}
+
+          <ModeToggle />
         </div>
       </div>
     </nav>
   );
 };
-

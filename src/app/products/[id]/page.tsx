@@ -1,17 +1,20 @@
-
 import Image from "next/image";
-import { getProducts } from "@/features/products/api";
+import AddToCartButton from "@/features/cart/AddToCartButton";
 import type { Product } from "@/types";
 import Link from "next/link";
 
-// NEW: Fetch one product using its ID
-async function getProduct(id: string): Promise<Product> {
+async function getProduct(id: string) {
   const response = await fetch(
-    `https://api.escuelajs.co/api/v1/products/${id}`
+    `https://api.escuelajs.co/api/v1/products/${id}`,
+    { cache: "no-store" }
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch product");
+    const errorDetails = await response.text();
+
+    throw new Error(
+      `Failed to fetch product ${id}. Status: ${response.status}. ${errorDetails}`
+    );
   }
 
   return response.json();
@@ -63,6 +66,7 @@ export default async function ProductDetailsPage({
           <p className="leading-7 text-gray-600">
             {product.description}
           </p>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </div>
