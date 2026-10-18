@@ -63,11 +63,11 @@ export default function CheckoutPage() {
   if (cart.length === 0) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-20 text-center">
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-foreground">
           Your cart is empty
         </h1>
 
-        <p className="mt-3 text-gray-600">
+        <p className="mt-3 text-foreground">
           Add some products before proceeding to checkout.
         </p>
 
@@ -83,7 +83,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <h1 className="mb-8 text-3xl font-bold text-gray-900">
+      <h1 className="mb-8 text-3xl font-bold text-foreground">
         Checkout
       </h1>
 
@@ -94,7 +94,7 @@ export default function CheckoutPage() {
         {/* Shipping information */}
         <div className="space-y-8 lg:col-span-2">
           <section className="rounded-xl border border-gray-200 p-6">
-            <h2 className="mb-6 text-xl font-semibold text-gray-900">
+            <h2 className="mb-6 text-xl font-semibold text-foreground">
               Shipping Information
             </h2>
 
@@ -231,7 +231,7 @@ export default function CheckoutPage() {
 
         {/* Order summary */}
         <aside className="h-fit rounded-xl border border-gray-200 p-6">
-          <h2 className="mb-6 text-xl font-semibold text-gray-900">
+          <h2 className="mb-6 text-xl font-semibold text-foreground">
             Order Summary
           </h2>
 
@@ -253,13 +253,13 @@ export default function CheckoutPage() {
                 )}
 
                 <div className="min-w-0 flex-1">
-                  <p className="line-clamp-2 text-sm font-medium text-gray-900">
+                  <p className="line-clamp-2 text-sm font-medium text-foreground">
                     {item.title}
                   </p>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-foreground">
                     Quantity: {item.quantity}
                   </p>
-                  <p className="mt-1 font-semibold text-gray-900">
+                  <p className="mt-1 font-semibold text-foreground">
                     ETB {(item.price * item.quantity).toLocaleString()}
                   </p>
                 </div>
@@ -268,17 +268,17 @@ export default function CheckoutPage() {
           </div>
 
           <div className="mt-6 space-y-3 border-t border-gray-200 pt-5">
-            <div className="flex justify-between text-sm text-gray-600">
+            <div className="flex justify-between text-sm text-foreground">
               <span>Subtotal</span>
               <span>ETB {total.toLocaleString()}</span>
             </div>
 
-            <div className="flex justify-between text-sm text-gray-600">
+            <div className="flex justify-between text-sm text-foreground">
               <span>Shipping</span>
               <span>Calculated later</span>
             </div>
 
-            <div className="flex justify-between border-t border-gray-200 pt-4 text-lg font-bold text-gray-900">
+            <div className="flex justify-between border-t border-gray-200 pt-4 text-lg font-bold text-foreground">
               <span>Order Total</span>
               <span>ETB {total.toLocaleString()}</span>
             </div>
